@@ -310,202 +310,141 @@
     <script src="accesos.js"></script> 
 
     <script>
-        let token;
+            let token;
 
-        window.onload = async function () {
-            token = localStorage.getItem("token");
+            window.onload = async function () {
+                token = localStorage.getItem("token");
 
-            if (!token) {
-                window.location.href = "bloqueo.html";
-                return;
-            }
-
-            const params = new URLSearchParams(window.location.search);
-            const reservaId = params.get("id");
-
-            if (!reservaId) {
-                alert("No se ha especificado una reserva para editar.");
-                return;
-            }
-
-            // --- Modal de mensajes ---
-            function modal_message(msgTitle, info, showLoading) {
-                msgShow_Simple(msgTitle, info, showLoading);
-            }
-
-            // --- VALIDACIÓN DE CAMPOS ---
-            function validar() {
-                let isValid = false;
-                msgvalidarcontrols = "";
-
-                if (!validate_result("lists", $("#cliente").val(), "cliente"))
-                    msgvalidarcontrols = "<span class='badge badge-danger'>Debe seleccionar un cliente.</span> ";
-
-                if (!validate_result("lists", $("#habitacion").val(), "habitacion"))
-                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe seleccionar una habitación.</span> ";
-
-                if (!validate_result("exists", $("#checkin").val(), "checkin"))
-                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe ingresar la fecha de check-in.</span> ";
-
-                if (!validate_result("exists", $("#checkout").val(), "checkout"))
-                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe ingresar la fecha de check-out.</span> ";
-
-                if (!validate_result("lists", $("#estado").val(), "estado"))
-                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe seleccionar un estado.</span> ";
-
-                if (!validate_result("exists", $("#total").val(), "total"))
-                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe ingresar el total.</span> ";
-
-                if (!validate_result("exists", $("#observaciones").val(), "observaciones"))
-                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe ingresar una observación.</span> ";
-
-                if (msgvalidarcontrols === "") isValid = true;
-
-                return isValid;
-            }
-
-            // --- Cargar clientes ---
-            async function cargarClientes(clienteSeleccionado) {
-                const select = document.getElementById("cliente");
-                select.innerHTML = '<option value="">Cargando...</option>';
-
-                try {
-                    const res = await axios.get(`${getServerUrl()}/reservations/clientes`, {
-                        headers: { Authorization: `Bearer ${token}` }
-                    });
-
-                    select.innerHTML = '<option value="">Seleccionar cliente...</option>';
-                    res.data.forEach(c => {
-                        const option = document.createElement("option");
-                        option.value = c.Client_Id;
-                        option.textContent = c.Client_Names;
-                        select.appendChild(option);
-                    });
-
-                    if (clienteSeleccionado) select.value = clienteSeleccionado;
-                } catch (error) {
-                    console.error("Error al cargar clientes:", error);
-                    select.innerHTML = '<option value="">Error al cargar</option>';
+                if (!token) {
+                    window.location.href = "bloqueo.html";
+                    return;
                 }
-            }
 
-            // --- Cargar habitaciones ---
-            async function cargarHabitaciones(habitacionSeleccionada) {
-                const select = document.getElementById("habitacion");
-                select.innerHTML = '<option value="">Cargando...</option>';
+                const params = new URLSearchParams(window.location.search);
+                const roomId = params.get("id");
 
-                try {
-                    const res = await axios.get(`${getServerUrl()}/reservations/habitaciones`, {
-                        headers: { Authorization: `Bearer ${token}` }
-                    });
-
-                    select.innerHTML = '<option value="">Seleccionar habitación...</option>';
-                    res.data.forEach(r => {
-                        const option = document.createElement("option");
-                        option.value = r.Room_Id;
-                        option.textContent = r.Room_Number;
-                        select.appendChild(option);
-                    });
-
-                    if (habitacionSeleccionada) select.value = habitacionSeleccionada;
-                } catch (error) {
-                    console.error("Error al cargar habitaciones:", error);
-                    select.innerHTML = '<option value="">Error al cargar</option>';
+                if (!roomId) {
+                    alert("No se ha especificado una habitación para editar.");
+                    return;
                 }
-            }
 
-            // --- Cargar estados ---
-            async function cargarEstados(estadoSeleccionado) {
-                const select = document.getElementById("estado");
-                select.innerHTML = '<option value="">Cargando...</option>';
-
-                try {
-                    const res = await axios.get(`${getServerUrl()}/reservations/estados`, {
-                        headers: { Authorization: `Bearer ${token}` }
-                    });
-
-                    select.innerHTML = '<option value="">Seleccionar estado...</option>';
-                    res.data.forEach(s => {
-                        const option = document.createElement("option");
-                        option.value = s.value;
-                        option.textContent = s.label;
-                        select.appendChild(option);
-                    });
-
-                    if (estadoSeleccionado) select.value = estadoSeleccionado;
-                } catch (error) {
-                    console.error("Error al cargar estados:", error);
-                    select.innerHTML = '<option value="">Error al cargar</option>';
+                // --- Modal de mensajes ---
+                function modal_message(msgTitle, info, showLoading) {
+                    msgShow_Simple(msgTitle, info, showLoading);
                 }
-            }
 
-            // --- Cargar datos de la reserva ---
-            try {
-                const response = await axios.get(`${getServerUrl()}/reservations/reservaId/${reservaId}`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
+                // --- VALIDACIÓN ---
+                function validar() {
+                    let isValid = false;
+                    msgvalidarcontrols = "";
 
-                const reserva = response.data;
+                    if (!validate_result("lists", $("#Roomstatus_Id").val(), "Roomstatus_Id"))
+                        msgvalidarcontrols += "<span class='badge badge-danger'>Debe seleccionar un estado.</span> ";
 
-                document.getElementById("checkin").value = reserva.Check_in_date.split("T")[0];
-                document.getElementById("checkout").value = reserva.Check_out_date.split("T")[0];
-                document.getElementById("total").value = reserva.Total;
-                document.getElementById("observaciones").value = reserva.Note;
+                    if (msgvalidarcontrols === "") isValid = true;
 
-                await cargarClientes(reserva.Client_Id);
-                await cargarHabitaciones(reserva.Room_Id);
-                await cargarEstados(reserva.Reservationstatus_Id);
-
-            } catch (error) {
-                console.error(error);
-                alert("No se pudo cargar la información de la reserva.");
-                return;
-            }
-
-            // --- BOTÓN CERRAR ---
-            $("#btnModal_Close").on("click", function (e) {
-                e.preventDefault();
-                if (swReload) {
-                    location.href = "reservas_admin.html";
+                    return isValid;
                 }
-            });
 
-            // --- BOTÓN ACTUALIZAR ---
-            document.getElementById('btnActualizar').addEventListener("click", async function (e) {
-                e.preventDefault();
-
-                swReload = false;
-
-                if (validar()) {
-                    const data = {
-                        Client_Id: parseInt(document.getElementById("cliente").value),
-                        Room_Id: parseInt(document.getElementById("habitacion").value),
-                        Reservationstatus_Id: parseInt(document.getElementById("estado").value),
-                        Check_in_date: document.getElementById("checkin").value,
-                        Check_out_date: document.getElementById("checkout").value,
-                        Total: parseFloat(document.getElementById("total").value),
-                        Note: document.getElementById("observaciones").value
-                    };
+                // --- Cargar tipos de habitación ---
+                async function cargarTipos(tipoSeleccionado) {
+                    const select = document.getElementById("Roomtype_Id");
+                    select.innerHTML = '<option value="">Cargando...</option>';
 
                     try {
-                        const response = await axios.put(`${getServerUrl()}/reservations/update/${reservaId}`, data, {
+                        const res = await axios.get(`${getServerUrl()}/rooms/tipos`, {
                             headers: { Authorization: `Bearer ${token}` }
                         });
 
-                        modal_message("Actualizar Reserva", "0 Reserva actualizada correctamente", 0);
-                        swReload = true;
+                        select.innerHTML = '<option value="">Seleccionar...</option>';
+                        res.data.forEach(t => {
+                            const option = document.createElement("option");
+                            option.value = t.Roomtype_Id;
+                            option.textContent = t.Roomtype_Name;
+                            select.appendChild(option);
+                        });
 
+                        if (tipoSeleccionado) select.value = tipoSeleccionado;
                     } catch (error) {
-                        console.error("Error al actualizar reserva:", error);
-                        const msg = error.response?.data?.detail || "Error al actualizar la reserva.";
-                        modal_message("Actualizar Reserva", `1 ${msg}`, 0);
+                        console.error("Error al cargar tipos:", error);
+                        select.innerHTML = '<option value="">Error al cargar</option>';
                     }
-
-                } else {
-                    modal_message("Validación", "-1 Complete los campos requeridos.<br>" + msgvalidarcontrols, 0);
                 }
-            });
-        };
+
+                // --- Cargar estados ---
+                async function cargarEstados(estadoSeleccionado) {
+                    const select = document.getElementById("Roomstatus_Id");
+                    select.innerHTML = '<option value="">Cargando...</option>';
+
+                    try {
+                        const res = await axios.get(`${getServerUrl()}/rooms/estados`, {
+                            headers: { Authorization: `Bearer ${token}` }
+                        });
+
+                        select.innerHTML = '<option value="">Seleccionar...</option>';
+                        res.data.forEach(s => {
+                            const option = document.createElement("option");
+                            option.value = s.Roomstatus_Id;
+                            option.textContent = s.Roomstatus_Name;
+                            select.appendChild(option);
+                        });
+
+                        if (estadoSeleccionado) select.value = estadoSeleccionado;
+                    } catch (error) {
+                        console.error("Error al cargar estados:", error);
+                        select.innerHTML = '<option value="">Error al cargar</option>';
+                    }
+                }
+
+                // --- Cargar datos de la habitación ---
+                try {
+                    const response = await axios.get(`${getServerUrl()}/rooms/roomId/${roomId}`, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+
+                    const room = response.data;
+
+                    document.getElementById("Room_Id").value = room.Room_Id;
+                    document.getElementById("Room_night_price").value = room.Room_night_price;
+                    document.getElementById("Room_day_price").value = room.Room_day_price;
+                    document.getElementById("Room_Capacity").value = room.Room_Capacity;
+
+                    await cargarTipos(room.Roomtype_Id);
+                    await cargarEstados(room.Roomstatus_Id);
+
+                } catch (error) {
+                    console.error(error);
+                    alert("No se pudo cargar la información de la habitación.");
+                    return;
+                }
+
+                // --- BOTÓN ACTUALIZAR ---
+                document.getElementById('btnActualizar').addEventListener("click", async function (e) {
+                    e.preventDefault();
+
+                    if (validar()) {
+                        const data = {
+                            Roomstatus_Id: parseInt(document.getElementById("Roomstatus_Id").value)
+                        };
+
+                        try {
+                            const response = await axios.put(`${getServerUrl()}/rooms/update/${roomId}`, data, {
+                                headers: { Authorization: `Bearer ${token}` }
+                            });
+
+                            modal_message("Actualizar Habitación", "0 Habitación actualizada correctamente.", 0);
+
+                        } catch (error) {
+                            console.error("Error al actualizar habitación:", error);
+                            const msg = error.response?.data?.detail || "Error al actualizar la habitación.";
+                            modal_message("Actualizar Habitación", `1 ${msg}`, 0);
+                        }
+                    } else {
+                        modal_message("Validación", "-1 Complete los campos requeridos.<br>" + msgvalidarcontrols, 0);
+                    }
+                });
+            };
+
 
     </script>
 
