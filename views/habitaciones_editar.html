@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Editar Habitaciones</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="../templates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../templates/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Menu -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-hotel"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Hotel</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Inicio -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Inicio</span></a>
+            </li>
+
+            <!-- Clientes -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#clientes"
+                    aria-expanded="true" aria-controls="clientes">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Clientes</span>
+                </a>
+                <div id="clientes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="clientes_admin.html">Administrar</a>
+                        <a class="collapse-item" href="clientes_crear.html">Registrar</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Habitaciones -->
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#habitaciones"
+                    aria-expanded="true" aria-controls="habitaciones">
+                    <i class="fas fa-fw fa-hotel"></i>
+                    <span>Habitaciones</span>
+                </a>
+                <div id="habitaciones" class="collapse show" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="habitaciones_admin.html">Administrar</a>
+                        <a class="collapse-item active" href="habitaciones_crear.html">Registrar</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Reservas -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reservas"
+                    aria-expanded="true" aria-controls="reservas">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Reservas</span>
+                </a>
+                <div id="reservas" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="reservas_admin.html">Administrar</a>
+                        <a class="collapse-item" href="reservas_crear.html">Registrar</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Reportes -->
+            <li class="nav-item">
+                <a class="nav-link" href="reportes.html">
+                    <i class="fas fa-fw fa-file-pdf"></i>
+                    <span>Reportes</span></a>
+            </li>
+
+            <!-- Usuarios -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#users" aria-expanded="true"
+                    aria-controls="users">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Usuarios</span>
+                </a>
+                <div id="users" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="usuarios_admin.html">Administrar</a>
+                        <a class="collapse-item" href="usuarios_crear.html">Registrar</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End Menu -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <ul class="navbar-nav ml-auto">
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span id="userNameDisplay" class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    Cargando...
+                                </span>
+                                <img class="img-profile rounded-circle"
+                                    src="../templates/img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" id="perfilLink" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Mi Perfil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="logout.html" >
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cerrar sesión
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Registrar Habitaciones</h1>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 bg-primary">
+                                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-user-plus"></i> Información Personal</h6>
+                                </div>
+                                <div class="card-body">
+
+                                    <form id="form-room">
+                                        <div class="row">
+                                            <div class="col-md-4 mb-3">
+                                                <label for="Room_Id">Número de Habitación</label>
+                                                <input type="text" class="form-control" id="Room_Id" name="Room_Id" placeholder="Num" disabled>
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="Room_night_price">Precio por Noche</label>
+                                                <input type="number" step="0.01" class="form-control" id="Room_night_price" name="Room_night_price" placeholder="Precio" disabled>
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="Room_day_price">Precio por Día</label>
+                                                <input type="number" step="0.01" class="form-control" id="Room_day_price" name="Room_day_price" placeholder="Precio" disabled>
+                                            </div>
+
+                                            <div class="col-md-4 mb-3">
+                                                <label for="Room_Capacity">Capacidad</label>
+                                                <input type="number" class="form-control" id="Room_Capacity" name="Room_Capacity" placeholder="Capacidad" disabled>
+                                            </div>
+
+
+                                            <div class="col-md-4 mb-3">
+                                                <label for="Roomtype_Id">Tipo de Habitación</label>
+                                               <select id="Roomtype_Id" name="Roomtype_Id" class="form-control" disabled>
+                                                <option value="">Seleccionar...</option>
+                                               </select>
+                                            </div>
+
+                                            <div class="col-md-4 mb-3">
+                                                <label for="Roomstatus_Id">Estado</label>
+                                                <select id="Roomstatus_Id"  name="Roomstatus_Id" class="form-control">
+                                                    <option value="">Seleccionar...</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <button id="btnActualizar" class="btn btn-success mr-2"><i class="fas fa-save"></i> Actualizar Habitación</button>
+                                        <a href="habitaciones_admin.html" class="btn btn-secondary"><i class="fas fa-sign-out-alt"></i> Canecelar</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aquí mostraremos mensajes -->
+                    <div id="mensaje" class="mt-3"></div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright © Next Software & Development S.A.S 2025</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Modal -->
+    <div class="modal fade " id="msg_modalWindows" >
+      <div class="modal-dialog modal-lg ">
+        <div class="modal-content " id="modalstyle">
+          <div class="modal-header " id="content_title">
+            <h4 class="modal-title" id="msgTitle" > </h4>
+            <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body " id="msgContent" >
+                <!-- Contenido creado dinamicamente -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btnModal_Close" class="btn btn-light flat" data-dismiss="modal" >Cerrar</button>                
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin modal -->
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../templates/vendor/jquery/jquery.min.js"></script>
+    <script src="../templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../templates/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- SCRIPT DE VALIDACIONES-->
+    <script type="text/javascript" src="../scripts/validaciones.js" language="javascript"></script>
+    <!-- SCRIPT DEL MODAL -->
+    <script type="text/javascript" src="includes/layout_msg_windows.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="const.js"></script>
+    <script src="accesos.js"></script> 
+
+    <script>
+        let token;
+
+        window.onload = async function () {
+            token = localStorage.getItem("token");
+
+            if (!token) {
+                window.location.href = "bloqueo.html";
+                return;
+            }
+
+            const params = new URLSearchParams(window.location.search);
+            const reservaId = params.get("id");
+
+            if (!reservaId) {
+                alert("No se ha especificado una reserva para editar.");
+                return;
+            }
+
+            // --- Modal de mensajes ---
+            function modal_message(msgTitle, info, showLoading) {
+                msgShow_Simple(msgTitle, info, showLoading);
+            }
+
+            // --- VALIDACIÓN DE CAMPOS ---
+            function validar() {
+                let isValid = false;
+                msgvalidarcontrols = "";
+
+                if (!validate_result("lists", $("#cliente").val(), "cliente"))
+                    msgvalidarcontrols = "<span class='badge badge-danger'>Debe seleccionar un cliente.</span> ";
+
+                if (!validate_result("lists", $("#habitacion").val(), "habitacion"))
+                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe seleccionar una habitación.</span> ";
+
+                if (!validate_result("exists", $("#checkin").val(), "checkin"))
+                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe ingresar la fecha de check-in.</span> ";
+
+                if (!validate_result("exists", $("#checkout").val(), "checkout"))
+                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe ingresar la fecha de check-out.</span> ";
+
+                if (!validate_result("lists", $("#estado").val(), "estado"))
+                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe seleccionar un estado.</span> ";
+
+                if (!validate_result("exists", $("#total").val(), "total"))
+                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe ingresar el total.</span> ";
+
+                if (!validate_result("exists", $("#observaciones").val(), "observaciones"))
+                    msgvalidarcontrols += "<span class='badge badge-danger'>Debe ingresar una observación.</span> ";
+
+                if (msgvalidarcontrols === "") isValid = true;
+
+                return isValid;
+            }
+
+            // --- Cargar clientes ---
+            async function cargarClientes(clienteSeleccionado) {
+                const select = document.getElementById("cliente");
+                select.innerHTML = '<option value="">Cargando...</option>';
+
+                try {
+                    const res = await axios.get(`${getServerUrl()}/reservations/clientes`, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+
+                    select.innerHTML = '<option value="">Seleccionar cliente...</option>';
+                    res.data.forEach(c => {
+                        const option = document.createElement("option");
+                        option.value = c.Client_Id;
+                        option.textContent = c.Client_Names;
+                        select.appendChild(option);
+                    });
+
+                    if (clienteSeleccionado) select.value = clienteSeleccionado;
+                } catch (error) {
+                    console.error("Error al cargar clientes:", error);
+                    select.innerHTML = '<option value="">Error al cargar</option>';
+                }
+            }
+
+            // --- Cargar habitaciones ---
+            async function cargarHabitaciones(habitacionSeleccionada) {
+                const select = document.getElementById("habitacion");
+                select.innerHTML = '<option value="">Cargando...</option>';
+
+                try {
+                    const res = await axios.get(`${getServerUrl()}/reservations/habitaciones`, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+
+                    select.innerHTML = '<option value="">Seleccionar habitación...</option>';
+                    res.data.forEach(r => {
+                        const option = document.createElement("option");
+                        option.value = r.Room_Id;
+                        option.textContent = r.Room_Number;
+                        select.appendChild(option);
+                    });
+
+                    if (habitacionSeleccionada) select.value = habitacionSeleccionada;
+                } catch (error) {
+                    console.error("Error al cargar habitaciones:", error);
+                    select.innerHTML = '<option value="">Error al cargar</option>';
+                }
+            }
+
+            // --- Cargar estados ---
+            async function cargarEstados(estadoSeleccionado) {
+                const select = document.getElementById("estado");
+                select.innerHTML = '<option value="">Cargando...</option>';
+
+                try {
+                    const res = await axios.get(`${getServerUrl()}/reservations/estados`, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+
+                    select.innerHTML = '<option value="">Seleccionar estado...</option>';
+                    res.data.forEach(s => {
+                        const option = document.createElement("option");
+                        option.value = s.value;
+                        option.textContent = s.label;
+                        select.appendChild(option);
+                    });
+
+                    if (estadoSeleccionado) select.value = estadoSeleccionado;
+                } catch (error) {
+                    console.error("Error al cargar estados:", error);
+                    select.innerHTML = '<option value="">Error al cargar</option>';
+                }
+            }
+
+            // --- Cargar datos de la reserva ---
+            try {
+                const response = await axios.get(`${getServerUrl()}/reservations/reservaId/${reservaId}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                const reserva = response.data;
+
+                document.getElementById("checkin").value = reserva.Check_in_date.split("T")[0];
+                document.getElementById("checkout").value = reserva.Check_out_date.split("T")[0];
+                document.getElementById("total").value = reserva.Total;
+                document.getElementById("observaciones").value = reserva.Note;
+
+                await cargarClientes(reserva.Client_Id);
+                await cargarHabitaciones(reserva.Room_Id);
+                await cargarEstados(reserva.Reservationstatus_Id);
+
+            } catch (error) {
+                console.error(error);
+                alert("No se pudo cargar la información de la reserva.");
+                return;
+            }
+
+            // --- BOTÓN CERRAR ---
+            $("#btnModal_Close").on("click", function (e) {
+                e.preventDefault();
+                if (swReload) {
+                    location.href = "reservas_admin.html";
+                }
+            });
+
+            // --- BOTÓN ACTUALIZAR ---
+            document.getElementById('btnActualizar').addEventListener("click", async function (e) {
+                e.preventDefault();
+
+                swReload = false;
+
+                if (validar()) {
+                    const data = {
+                        Client_Id: parseInt(document.getElementById("cliente").value),
+                        Room_Id: parseInt(document.getElementById("habitacion").value),
+                        Reservationstatus_Id: parseInt(document.getElementById("estado").value),
+                        Check_in_date: document.getElementById("checkin").value,
+                        Check_out_date: document.getElementById("checkout").value,
+                        Total: parseFloat(document.getElementById("total").value),
+                        Note: document.getElementById("observaciones").value
+                    };
+
+                    try {
+                        const response = await axios.put(`${getServerUrl()}/reservations/update/${reservaId}`, data, {
+                            headers: { Authorization: `Bearer ${token}` }
+                        });
+
+                        modal_message("Actualizar Reserva", "0 Reserva actualizada correctamente", 0);
+                        swReload = true;
+
+                    } catch (error) {
+                        console.error("Error al actualizar reserva:", error);
+                        const msg = error.response?.data?.detail || "Error al actualizar la reserva.";
+                        modal_message("Actualizar Reserva", `1 ${msg}`, 0);
+                    }
+
+                } else {
+                    modal_message("Validación", "-1 Complete los campos requeridos.<br>" + msgvalidarcontrols, 0);
+                }
+            });
+        };
+
+    </script>
+
+
+
+</body>
+
+</html>

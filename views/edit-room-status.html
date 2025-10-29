@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Habitaciones - Administrar</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="../templates/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../templates/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="../templates/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+
+        <!-- Menu Lateral -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-hotel"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Hotel</div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#clientes"
+                   aria-expanded="true" aria-controls="clientes">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Clientes</span>
+                </a>
+                <div id="clientes" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="clientes_admin.html">Administrar</a>
+                        <a class="collapse-item" href="clientes_crear.html">Registrar</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#habitaciones"
+                   aria-expanded="true" aria-controls="habitaciones">
+                    <i class="fas fa-fw fa-hotel"></i>
+                    <span>Habitaciones</span>
+                </a>
+                <div id="habitaciones" class="collapse show" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item active" href="habitaciones_admin.html">Administrar</a>
+                        <a class="collapse-item" href="habitaciones_crear.html">Registrar</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reservas"
+                   aria-expanded="true" aria-controls="reservas">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Reservas</span>
+                </a>
+                <div id="reservas" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="reservas_admin.html">Administrar</a>
+                        <a class="collapse-item" href="reservas_crear.html">Registrar</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="reportes.html">
+                    <i class="fas fa-fw fa-file-pdf"></i>
+                    <span>Reportes</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#users"
+                   aria-expanded="true" aria-controls="users">
+                    <i class="fas fa-fw fa-user-shield"></i>
+                    <span>Usuarios</span>
+                </a>
+                <div id="users" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="usuarios_admin.html">Administrar</a>
+                        <a class="collapse-item" href="usuarios_crear.html">Registrar</a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- Fin Menu -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar habitaciones..." id="searchRooms">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrador</span>
+                                <img class="img-profile rounded-circle" src="../templates/img/undraw_profile.svg">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Mi Perfil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="login.html">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cerrar sesión
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Gestión de Habitaciones</h1>
+                        <a href="habitaciones_crear.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                            <i class="fas fa-plus fa-sm text-white-50"></i> Nueva Habitación
+                        </a>
+                        
+                    </div>
+<div class="container mt-4">
+     <div class="container">
+        <div class="container-card">
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <h1 class="text-white mb-2">🔄 Editar Estado</h1>
+                <p class="text-white-50">Actualice el estado de la habitación seleccionada</p>
+                <a href="habitaciones_admin.html" class="btn btn-light btn-sm">
+                    <i class="fas fa-arrow-left me-1"></i>Volver al listado
+                </a>
+            </div>
+
+            <!-- Información de la Habitación -->
+            <div class="habitacion-info" id="infoHabitacion">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                    <p class="mt-2">Cargando información de la habitación...</p>
+                </div>
+            </div>
+
+            <!-- Formulario de Edición -->
+            <div class="estado-form">
+                <h4 class="mb-4">Seleccionar Nuevo Estado</h4>
+                
+                <div id="opcionesEstado">
+                    <!-- Las opciones se cargarán dinámicamente -->
+                    <div class="text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button id="btnGuardar" class="btn btn-guardar w-100" disabled>
+                        <i class="fas fa-save me-2"></i>Guardar Cambios
+                    </button>
+                </div>
+                
+                <div id="mensajeResultado" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="editar-estado.js"></script>
+
+            </div>
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright © Next Software & Development S.A.S 2025</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End Footer -->
+
+        </div>
+    </div>
+
+    <!-- Scroll to Top -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="../templates/vendor/jquery/jquery.min.js"></script>
+    <script src="../templates/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../templates/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../templates/js/sb-admin-2.min.js"></script>
+
+<script>
+    // modal-editar-estado.js
+console.log('✅ Modal script cargado');
+
+let currentRoomId = null;
+
+// Inicializar modal
+document.addEventListener('DOMContentLoaded', function() {
+    initializeModal();
+});
+
+function initializeModal() {
+    const modal = document.getElementById('editStatusModal');
+    const closeBtn = document.querySelector('.close-modal');
+    const cancelBtn = document.getElementById('modal-cancel-btn');
+    const saveBtn = document.getElementById('modal-save-btn');
+
+    // Cerrar modal
+    closeBtn.onclick = closeModal;
+    cancelBtn.onclick = closeModal;
+    
+    // Cerrar al hacer click fuera
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+
+    // Guardar cambios
+    saveBtn.onclick = saveRoomStatus;
+}
+
+// Función para abrir la modal
+async function openEditModal(roomId, roomData = null) {
+    console.log('🎯 Abriendo modal para room ID:', roomId);
+    
+    currentRoomId = roomId;
+    const modal = document.getElementById('editStatusModal');
+    
+    // Mostrar datos básicos inmediatamente
+    if (roomData) {
+        displayRoomDataInModal(roomData);
+    }
+    
+    // Mostrar modal
+    modal.style.display = 'block';
+    
+    // Cargar datos adicionales
+    try {
+        await loadRoomStatusesForModal();
+        
+        // Si no teníamos roomData, cargarla
+        if (!roomData) {
+            await loadRoomDataForModal(roomId);
+        }
+        
+    } catch (error) {
+        console.error('Error cargando datos:', error);
+        showModalError('Error cargando datos: ' + error.message);
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById('editStatusModal');
+    modal.style.display = 'none';
+    currentRoomId = null;
+    
+    // Limpiar errores
+    document.getElementById('modal-error').style.display = 'none';
+}
+
+function displayRoomDataInModal(roomData) {
+    console.log('📊 Mostrando datos en modal:', roomData);
+    
+    document.getElementById('modal-room-id').textContent = roomData.id;
+    document.getElementById('modal-room-number').textContent = roomData.number || roomData.room_number;
+    document.getElementById('modal-room-type').textContent = roomData.room_type || roomData.type_name;
+}
+
+async function loadRoomDataForModal(roomId) {
+    try {
+        const response = await fetch(`http://localhost:8000/api/room_register`);
+        
+        if (!response.ok) throw new Error('Error cargando habitación');
+        
+        const allRooms = await response.json();
+        const roomData = Array.isArray(allRooms) 
+            ? allRooms.find(room => room.id == roomId) 
+            : null;
+            
+        if (roomData) {
+            displayRoomDataInModal(roomData);
+        }
+    } catch (error) {
+        console.error('Error cargando datos habitación:', error);
+    }
+}
+
+async function loadRoomStatusesForModal() {
+    try {
+        const response = await fetch('http://localhost:8000/api/edit/room-statuses/');
+        
+        if (!response.ok) throw new Error('Error cargando estados');
+        
+        const statuses = await response.json();
+        displayStatusOptionsInModal(statuses);
+        
+    } catch (error) {
+        console.error('Error cargando estados:', error);
+        // Estados de emergencia
+        displayEmergencyStatuses();
+    }
+}
+
+function displayStatusOptionsInModal(statuses) {
+    const container = document.getElementById('modal-status-options');
+    
+    if (!statuses || statuses.length === 0) {
+        container.innerHTML = '<p>No hay estados disponibles</p>';
+        return;
+    }
+    
+    container.innerHTML = statuses.map(status => `
+        <div class="status-option">
+            <input type="radio" id="modal-status-${status.id}" name="modal-status" value="${status.id}">
+            <label for="modal-status-${status.id}">
+                <strong>${status.status_name}</strong>
+                ${status.description ? `<br><small>${status.description}</small>` : ''}
+            </label>
+        </div>
+    `).join('');
+}
+
+function displayEmergencyStatuses() {
+    const emergencyStatuses = [
+        { id: 1, status_name: "Disponible", description: "Habitación lista para uso" },
+        { id: 2, status_name: "Ocupada", description: "Habitación en uso" },
+        { id: 3, status_name: "En limpieza", description: "Habitación en proceso de limpieza" },
+        { id: 4, status_name: "Fuera de servicio", description: "Habitación no disponible" }
+    ];
+    
+    const container = document.getElementById('modal-status-options');
+    container.innerHTML = emergencyStatuses.map(status => `
+        <div class="status-option">
+            <input type="radio" id="modal-status-${status.id}" name="modal-status" value="${status.id}">
+            <label for="modal-status-${status.id}">
+                <strong>${status.status_name}</strong>
+                <br><small>${status.description}</small>
+            </label>
+        </div>
+    `).join('');
+}
+
+async function saveRoomStatus() {
+    if (!currentRoomId) {
+        alert('No hay habitación seleccionada');
+        return;
+    }
+
+    const selectedStatus = document.querySelector('input[name="modal-status"]:checked');
+    
+    if (!selectedStatus) {
+        alert('Por favor selecciona un estado');
+        return;
+    }
+
+    console.log('💾 Guardando estado...', {
+        roomId: currentRoomId,
+        statusId: selectedStatus.value
+    });
+
+    try {
+        const response = await fetch(`http://localhost:8000/api/edit/update-room-status/`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                room_id: parseInt(currentRoomId),
+                new_status_id: parseInt(selectedStatus.value)
+            })
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log('✅ Estado actualizado:', result);
+            alert('✅ Estado actualizado correctamente');
+            closeModal();
+            
+            // Recargar la lista de habitaciones
+            loadRooms(); // Si tienes esta función
+            
+        } else {
+            throw new Error('Error ' + response.status);
+        }
+    } catch (error) {
+        console.error('❌ Error guardando:', error);
+        alert('❌ Error al actualizar el estado');
+    }
+}
+
+function showModalError(message) {
+    const errorDiv = document.getElementById('modal-error');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+}
+</script>
+
+
+
+
+</body>
+</html>

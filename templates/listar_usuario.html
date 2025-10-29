@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Usuarios - Hotel</title>
+
+    <!-- Bootstrap 4 Core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for SB Admin 2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for SB Admin 2 -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+</head>
+<body id="page-top">
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-hotel"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Hotel App</div>
+        </a>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link" href="registrar_usuario.html">
+                <i class="fas fa-user-plus"></i>
+                <span>Registrar Usuario</span>
+            </a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="listar_usuarios.html">
+                <i class="fas fa-users"></i>
+                <span>Listar Usuarios</span>
+            </a>
+        </li>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <h1 class="h4 mb-0 text-gray-800">Listado de Usuarios</h1>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrador</span>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Gestión de Usuarios</h1>
+                </div>
+
+                <!-- Users Table -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-users-cog"></i> Usuarios Registrados</h6>
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addUserModal"><i class="fas fa-plus"></i> Nuevo</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-control-sm w-25 d-inline-block" placeholder="Buscar usuarios..." id="searchUsers">
+                                <select class="form-control form-control-sm w-25 d-inline-block ml-2" id="filterStatus">
+                                    <option value="">Filtrar por estado</option>
+                                    <option value="activo">Activo</option>
+                                    <option value="inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                            <table class="table table-bordered table-hover" width="100%" cellspacing="0">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Nombre Completo</th>
+                                        <th>Usuario</th>
+                                        <th>Email</th>
+                                        <th>Teléfono</th>
+                                        <th>Estado</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Luis Fran Cardozo González</td>
+                                        <td>@admin</td>
+                                        <td>luis@gmail.com</td>
+                                        <td>333 333 3333</td>
+                                        <td><span class="badge badge-success">Activo</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maria Jose Melo</td>
+                                        <td>@admin1</td>
+                                        <td>mariajose@gmail.com</td>
+                                        <td>333 333 3333</td>
+                                        <td><span class="badge badge-success">Activo</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Juan Gomez Herrera</td>
+                                        <td>@admin2</td>
+                                        <td>juan@gmail.com</td>
+                                        <td>333 333 3333</td>
+                                        <td><span class="badge badge-success">Activo</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Manuel Risco P.</td>
+                                        <td>@admin3</td>
+                                        <td>manuel@gmail.com</td>
+                                        <td>333 333 3333</td>
+                                        <td><span class="badge badge-success">Activo</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>© 2025 Next Software & Development S.A.S.</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button -->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="js/sb-admin-2.min.js"></script>
+
+<!-- Optional: Script para búsqueda en tiempo real -->
+<script>
+    $(document).ready(function () {
+        $('#searchUsers').on('keyup', function () {
+            let value = $(this).val().toLowerCase();
+            $('tbody tr').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+        $('#filterStatus').on('change', function () {
+            let status = $(this).val();
+            if (!status) {
+                $('tbody tr').show();
+                return;
+            }
+            $('tbody tr').each(function () {
+                let isActive = $(this).find('.badge-success').length > 0;
+                if ((status === 'activo' && isActive) || (status === 'inactivo' && !isActive)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
