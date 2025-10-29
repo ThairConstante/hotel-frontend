@@ -1,5 +1,5 @@
 
-const ENV = false;
+const ENV = false
 
 function getServerUrl(){
     if(ENV){
@@ -7,7 +7,7 @@ function getServerUrl(){
     }else{
         return 'https://hotel-backend-yrr7.onrender.com'
     }
-}
+
 
 
 
