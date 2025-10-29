@@ -7,7 +7,4 @@ function getServerUrl(){
     }else{
         return 'https://hotel-backend-yrr7.onrender.com'
     }
-
-
-
-
+}
