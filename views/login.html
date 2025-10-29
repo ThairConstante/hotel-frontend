@@ -101,18 +101,9 @@
     <script type="text/javascript" src="includes/layout_msg_windows.js"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-   
+    <script src="const.js"></script>
 
     <script>
-        const ENV = false
-
-        function getServerUrl(){
-            if(ENV){
-                return 'http://127.0.0.1:8000'
-            }else{
-                return 'https://hotel-backend-yrr7.onrender.com'
-            }
-        }
 
         //Verificamos validacion en cada control
         function validar(){     
