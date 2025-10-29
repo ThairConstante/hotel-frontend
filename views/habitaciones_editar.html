@@ -424,6 +424,11 @@
 
                     if (validar()) {
                         const data = {
+                            Room_Id: parseInt(document.getElementById("Room_Id").value),
+                            Room_night_price: parseFloat(document.getElementById("Room_night_price").value),
+                            Room_day_price: parseFloat(document.getElementById("Room_day_price").value),
+                            Room_Capacity: parseInt(document.getElementById("Room_Capacity").value),
+                            Roomtype_Id: parseInt(document.getElementById("Roomtype_Id").value),
                             Roomstatus_Id: parseInt(document.getElementById("Roomstatus_Id").value)
                         };
 
@@ -433,15 +438,18 @@
                             });
 
                             modal_message("Actualizar Habitación", "0 Habitación actualizada correctamente.", 0);
+                            swReload = true;
 
                         } catch (error) {
                             console.error("Error al actualizar habitación:", error);
                             const msg = error.response?.data?.detail || "Error al actualizar la habitación.";
                             modal_message("Actualizar Habitación", `1 ${msg}`, 0);
                         }
+
                     } else {
                         modal_message("Validación", "-1 Complete los campos requeridos.<br>" + msgvalidarcontrols, 0);
                     }
+
                 });
             };
 
