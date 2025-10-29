@@ -277,6 +277,8 @@
                         estadoText = '<span class="badge bg-success text-white">Confirmada</span>';
                     }else if (r.Reservationstatus_Id === 3){
                         estadoText = '<span class="badge bg-danger text-white">Cancelada</span>';
+                    }else{
+                        estadoText = '<span class="badge bg-secondary text-white">Competada</span>';
                     }
 
                     const row = document.createElement("tr");
