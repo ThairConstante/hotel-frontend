@@ -352,7 +352,7 @@
                     select.innerHTML = '<option value="">Cargando...</option>';
 
                     try {
-                        const res = await axios.get(`${getServerUrl()}/rooms/tipos`, {
+                        const res = await axios.get(`${getServerUrl()}/rooms/types`, {
                             headers: { Authorization: `Bearer ${token}` }
                         });
 
@@ -377,7 +377,7 @@
                     select.innerHTML = '<option value="">Cargando...</option>';
 
                     try {
-                        const res = await axios.get(`${getServerUrl()}/rooms/estados`, {
+                        const res = await axios.get(`${getServerUrl()}/rooms/statuses`, {
                             headers: { Authorization: `Bearer ${token}` }
                         });
 
