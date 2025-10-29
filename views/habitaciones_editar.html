@@ -359,8 +359,8 @@
                         select.innerHTML = '<option value="">Seleccionar...</option>';
                         res.data.forEach(t => {
                             const option = document.createElement("option");
-                            option.value = t.Roomtype_Id;
-                            option.textContent = t.Roomtype_Name;
+                            option.value = t.value;
+                            option.textContent = t.label;
                             select.appendChild(option);
                         });
 
@@ -384,8 +384,8 @@
                         select.innerHTML = '<option value="">Seleccionar...</option>';
                         res.data.forEach(s => {
                             const option = document.createElement("option");
-                            option.value = s.Roomstatus_Id;
-                            option.textContent = s.Roomstatus_Name;
+                            option.value = s.value;
+                            option.textContent = s.label;
                             select.appendChild(option);
                         });
 
